@@ -47,9 +47,9 @@ export function AuthContextProvider({children}){
 
 	useEffect(()=>{
 		setToken(localStorage.getItem('encodedToken'));
-		if(localStorage.getItem('encodedToken')){
-			setIsLoggedIn(true);
-		}
+		// if(localStorage.getItem('encodedToken')){
+		// 	setIsLoggedIn(true);
+		// }
 	},[])
 
 	const value={isLoggedIn,setIsLoggedIn,userInput,setUserInput,handleGuestLogin,user,token}
