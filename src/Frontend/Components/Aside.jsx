@@ -1,0 +1,25 @@
+
+import { useContext, useEffect} from 'react'
+import {Filter} from '../Components/Filter'
+import { Suggestions } from '../Components/Sugsestion'
+import { FollowerContext } from '../..'
+export function Aside(){
+
+	const {allSuggestions}=useContext(FollowerContext)
+
+	return (
+		<div className="aside">
+			<div className="filter-content">
+				<Filter/>
+				<hr />
+				<header>Who to follow?</header>
+				{
+					allSuggestions.map(item=>(
+						<Suggestions user={item}/>
+					))
+				}
+				
+			</div>
+		</div>	
+	) 
+}
