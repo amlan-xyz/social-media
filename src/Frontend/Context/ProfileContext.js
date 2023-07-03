@@ -9,12 +9,13 @@ export function ProfileContextProvider({children}){
 	const [editProfileInput,setEditProfileInput]=useState([]);
 	const [bio,setBio]=useState([]);
 	const [website,setWebsite]=useState([]);
+	const [showAvatars,setShowAvatars]=useState(false);
 
 	const updateProfile=async()=>{
 	
 	}
 
-	const value={showEditProfile,setShowEditProfile,avatar,setAvatar,showList,setShowList,editProfileInput,setBio,setWebsite,setEditProfileInput,bio,website,updateProfile}
+	const value={showAvatars,setShowAvatars,showEditProfile,setShowEditProfile,avatar,setAvatar,showList,setShowList,editProfileInput,setBio,setWebsite,setEditProfileInput,bio,website,updateProfile}
 
 
 	

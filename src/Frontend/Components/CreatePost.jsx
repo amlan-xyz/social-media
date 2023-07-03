@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react"
 import { PostContext } from "../Context/PostsContext";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faMultiply} from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 export function CreatePost(){
 
-	const {getUserData}=useContext(PostContext)
+	const {getUserData,setCreatePost,showCreatePost}=useContext(PostContext)
 	const [postText,setPostText]=useState('')
 	const createPost=async(e)=>{
 		e.preventDefault();
@@ -17,7 +19,8 @@ export function CreatePost(){
 			})
 			alert('post created');
 			getUserData();
-			e.target.text_area.value=''
+			e.target.text_area.value='';
+			setCreatePost(false)
 		}catch(err){
 			console.log(err);
 		}
@@ -26,6 +29,10 @@ export function CreatePost(){
 	
 	return (
 		<form onSubmit={createPost} className="create-post">
+			<div className="close_btn">
+				<p>New Post</p>
+				<a  onClick={()=>setCreatePost(false)}><FontAwesomeIcon icon={faMultiply}  className="post-icon"/></a>
+			</div>
 			{/* <textarea onChange={(e)=>setPost(form=>({...form,content:e.target.value}))}   id="" cols="30" rows="8" placeholder="What's on your mind?"></textarea> */}
 			<textarea onChange={(e)=>{
 				setPostText({content:e.target.value}); 

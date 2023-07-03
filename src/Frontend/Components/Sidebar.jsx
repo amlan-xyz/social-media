@@ -2,9 +2,13 @@ import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faHomeUser,faMagnifyingGlass,faBookBookmark,faUser } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import { useContext } from "react";
+import { PostContext } from "../Context/PostsContext";
 
 
 export function Sidebar(){
+
+	const {setCreatePost}=useContext(PostContext)
 	return (
 		<div className="sidebar">
 			<div className="sidebar-content">
@@ -16,7 +20,9 @@ export function Sidebar(){
 						<li key='profile'><Link to='/profile'><FontAwesomeIcon icon={faUser} className="sidebar-icon" />Profile</Link></li>
 					</ul>
 
-					<button className="sidebar-btn">Create new Post</button>
+					{/* <button className="sidebar-btn" onClick={()=>{
+						setCreatePost(true);
+					}}>Create new Post</button> */}
 				</div>
 				<div className="sidebar-profile">
 					<img src='/avatars/1.png' alt="profile" />

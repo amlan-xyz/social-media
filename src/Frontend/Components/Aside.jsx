@@ -10,8 +10,6 @@ export function Aside(){
 	return (
 		<div className="aside">
 			<div className="filter-content">
-				<Filter/>
-				<hr />
 				<header>Who to follow?</header>
 				{
 					allSuggestions.map(item=>(

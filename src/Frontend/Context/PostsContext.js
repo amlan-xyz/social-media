@@ -12,6 +12,7 @@ export function PostContextProvider({children}){
 	const [userPosts,setUserPosts]=useState([]);
 	const [postId,setPostId]=useState('');
 	const [posts,setPosts]=useState([]);
+	const [showCreatePost,setCreatePost]=useState(false);
 
 	const getPosts=async()=>{
 		const {data:{posts}}=await axios.get('/api/posts');
@@ -74,8 +75,12 @@ export function PostContextProvider({children}){
 		}
 	}
 
+	const sortTrending=()=>{
+		setUserPosts(userPosts.sort((a,b)=>b.likes.likeCount-a.likes.likeCount));
+	}
 
-	const value={posts,getPosts,likePost,setPostId,postId,dislikePost,showEdit,setShowEdit,editInput,setEditInput,editPost,userPosts,getUserData,deletePost};
+
+	const value={sortTrending,setCreatePost,showCreatePost,posts,getPosts,likePost,setPostId,postId,dislikePost,showEdit,setShowEdit,editInput,setEditInput,editPost,userPosts,getUserData,deletePost};
 	return (
 		<PostContext.Provider value={value}>
 			{children}

@@ -7,16 +7,22 @@ import { useContext,useState ,useEffect } from 'react';
 
 import { PostContext, ProfileContext,AuthContext } from '../../index';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faMultiply} from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 
 import axios from 'axios';
 
 export function Profile(){
 	const {user}=useContext(AuthContext)
-	const {showEditProfile,setShowEditProfile,showList,setShowList,setAvatar,avatar,editProfileInput,setEditProfileInput,bio,setBio,setWebsite,updateProfile}=useContext(ProfileContext)
+	const {showEditProfile,setShowEditProfile,showList,setShowList,setAvatar,avatar,editProfileInput,setEditProfileInput,bio,website,setBio,setWebsite,updateProfile,showAvatars,setShowAvatars}=useContext(ProfileContext)
 
 	const {userPosts,getUserData}=useContext(PostContext)
 
-	
+		
+
+
 	useEffect(()=>{
 		getUserData();
 	},[])
@@ -30,27 +36,57 @@ export function Profile(){
 			<User user={user}/>
 
 			{
-				showEditProfile && <div>
-				
-				<form onSubmit={(e)=>{
+				showEditProfile && <div  className='edit-div'>
+				<div className="edit-heading">
+					<p>Edit Profile</p>
+					<a  onClick={()=>setShowEditProfile(false)}><FontAwesomeIcon icon={faMultiply}  className="post-icon"/></a>
+				</div>
+				<hr />
+				<form className='edit-form' onSubmit={(e)=>{
 					e.preventDefault();
 					setBio(e.target.inputBio.value);
 					setWebsite(e.target.inputWebsite.value);
 					setShowEditProfile(false);
-				}} style={{border:'1px solid ' ,padding:'1rem',margin:'1rem',display:'flex',flexDirection:'column' }} action="">
-					<label>Add avatar</label>
-					<input type="file" />
+				}} action="">
 					<label htmlFor="bio">Add your bio</label>
 					<textarea id='bio' name='inputBio' type="text" cols='30'/>
 					<label htmlFor="website">Website Link</label>
 					<input type="text" name='inputWebsite' id="website" />
-					<button type='submit'>Submit</button>
+					<button className='edit-btn' type='submit'>Submit</button>
 				</form>
 
 				</div>
 				
 				
 			}
+
+			{
+				showAvatars && <div className="avatar">
+				<div className="">
+				<header>Choose avatar</header>
+				<a  onClick={()=>setShowAvatars(false)}><FontAwesomeIcon icon={faMultiply}  className=""/></a>
+				</div>
+				
+					<hr />
+				<ul>
+					<li onClick={()=>{
+						setAvatar('/avatars/2.png')
+						setShowAvatars(false);
+					}}><img src="/avatars/2.png" alt="" /></li>
+					<li  onClick={()=>{
+						setAvatar('/avatars/1.png')
+						setShowAvatars(false);
+					}}><img src="/avatars/1.png" alt="" /></li>
+					<li  onClick={()=>{
+						setAvatar('/avatars/3.png')
+						setShowAvatars(false);
+					}}> <img src="/avatars/3.png" alt="" /></li>
+				</ul>
+			</div>
+			
+			}
+
+			
 
 			
 

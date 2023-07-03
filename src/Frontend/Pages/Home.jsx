@@ -10,9 +10,10 @@ import axios from 'axios'
 import { PostContext } from '../Context/PostsContext';
 
 import { EditPost } from '../Components/EditPost';
+import { Filter } from '../Components/Filter';
 
 export function Home(){
-	const {userPosts,getUserData,showEdit}=useContext(PostContext)
+	const {userPosts,getUserData,showEdit,showCreatePost,setCreatePost}=useContext(PostContext)
 
 	
 	useEffect(()=>{
@@ -25,8 +26,23 @@ export function Home(){
 		<Navbar/>
 		<Sidebar/>
 		<main>
-			<CreatePost/>
+		
+			{
+				!showCreatePost && <button className="sidebar-btn" onClick={()=>{
+					setCreatePost(true);
+				}}>Create new Post</button>
+			}
+
+			{
+				showCreatePost && <CreatePost/>
+			}
+			
+			<div className="home_filters">
 			<header>Latest Posts</header>
+			<Filter/>
+			</div>
+
+			
 			{
 				userPosts.map(post=>(
 					<Post post={post}/>

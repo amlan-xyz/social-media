@@ -27,11 +27,16 @@ export function Post({post}){
 		<div className="post" >
 			<div className="user">
 				<div className="details">
+
+				{/* {
+
+				} */}
+
 				<img src="/avatars/3.png" alt="profile" />
 				<header>
 					{username}
-					<br />
-					{createdAt}
+					{"  "},{"  "} 
+					{createdAt.slice(0,10)}
 				</header>
 				</div>
 				
