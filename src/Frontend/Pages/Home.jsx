@@ -44,7 +44,7 @@ export function Home(){
 			
 			
 			<div className="home_filters">
-				<header>Latest Posts</header>
+				<header>All Posts</header>
 				<Filter/>
 			</div>
 
