@@ -43,7 +43,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "amlan",
-    createdAt: formatDate(),
+    createdAt: '07/07/2023',
     updatedAt: formatDate(),
   },
   {
