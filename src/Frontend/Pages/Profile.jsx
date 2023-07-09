@@ -2,7 +2,7 @@ import {Sidebar} from '../Components/Sidebar'
 import {Aside} from '../Components/Aside'
 import { Navbar } from '../Components/Navbar';
 import {Post} from '../Components/Post'
-import {User} from '../Components/User'
+import {EditPost} from '../Components/EditPost'
 import { useContext,useState ,useEffect } from 'react';
 
 import { PostContext, ProfileContext,AuthContext } from '../../index';
@@ -18,7 +18,7 @@ import { useParams } from 'react-router-dom';
 export function Profile(){
 
 	const {user}=useContext(AuthContext);
-
+	const {showEdit}=useContext(PostContext)
 	const {profileData,setProfileData,getProfileData,showEditProfile,setShowEditProfile,showList,setShowList,setAvatar,avatar,editProfileInput,setEditProfileInput,bio,website,setBio,setWebsite,updateProfile,showAvatars,setShowAvatars,followingLength,followerLength,getProfilePosts,profilePosts,profileLength}=useContext(ProfileContext)
 
 	const {id}=useParams();
@@ -33,7 +33,10 @@ export function Profile(){
 		<Navbar/>
 		<Sidebar/>
 		<main>
-			{/* <User/> */}
+
+		{
+				showEdit && <EditPost />
+		}
 			<div className="user">
 			{
 					user.username===profileData.username && avatar ?<img src={avatar} alt="profile" />:<img src="/avatars/3.png" alt="profile" />
