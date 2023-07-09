@@ -45,9 +45,15 @@ export function Profile(){
 			<h3>{profileData.firstName + ' ' + profileData.lastName}</h3>
 			<small>@{profileData.username}</small>
 		
+			{
+				user.username===profileData.username && <p>{bio}</p>
+			}
 
-			<p>{bio}</p>
-			<a href="">{website}</a>
+			{
+				user.username===profileData.username && <a href="">{website}</a>
+			}
+			
+			
 
 			
 			
