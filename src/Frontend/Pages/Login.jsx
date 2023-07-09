@@ -26,7 +26,7 @@ export function Login(){
 						}}><FontAwesomeIcon className="post-icon" icon={faEyeSlash}/></span>
 					}
 				</div>
-				<input type="password" onChange={(e)=>setUserInputLogin(form=>({...form,password:e.target.value}))} id="password" required />		
+				<input type={passwordType} onChange={(e)=>setUserInputLogin(form=>({...form,password:e.target.value}))} id="password" required />		
 				
 				<button type="submit">Login</button>
 				<div className="alternate-btn">
