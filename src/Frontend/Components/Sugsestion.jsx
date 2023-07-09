@@ -1,25 +1,43 @@
-import { useContext } from "react";
-import { FollowerContext } from "../..";
+import { useContext, useEffect } from "react";
+import { AuthContext, FollowerContext,PostContext, ProfileContext } from "../..";
 
-export function Suggestions({user}){
-	const {_id,username,firstName,lastName}=user;
-	const {followUser}=useContext(FollowerContext)
-	// const {getUserData}=useContext(PostContext)
+import { useNavigate } from "react-router-dom";
+export function Suggestions({suggested_user}){
+	const {_id,username,firstName,lastName,followers}=suggested_user;
+	const {user}=useContext(AuthContext)
+	const {followUser,getSuggestions,unfollowUser}=useContext(FollowerContext)
+	const {getProfileData}=useContext(ProfileContext)
+	let navigate = useNavigate(); 
+
+
 	return (
 		<div className="suggestions">
 			<ul>
-				<li key={_id}>
+				<li  key={_id}>
 					<img src="/avatars/2.png" alt="profile" />
-					<p>
+					<p onClick={()=>{
+					navigate(`/profile/${_id}`)
+					getProfileData(_id);
+				}}>
 						{firstName} {""}{lastName} <br />
 						<small>{username}</small>
 					</p>
-					<button onClick={(e)=>{
-						e.preventDefault();
-						followUser(_id);
-					}}>Follow</button>
+					{
+						followers.find(item=>item.username===user.username)?(<button onClick={(e)=>{e.preventDefault();
+							unfollowUser(_id);
+							getSuggestions();
+							}}>Unfollow</button>):
+						
+						(<button onClick={(e)=>{
+							e.preventDefault();
+							followUser(_id);
+							getSuggestions();
+						}}>Follow</button>)
+					}
+					
 				</li>
 			</ul>
 		</div>	
 	)
 }
+

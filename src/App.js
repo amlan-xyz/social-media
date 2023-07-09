@@ -1,6 +1,9 @@
 
 import './App.css';
-import {Routes,Route, useLocation, useNavigate} from 'react-router'
+import {Routes,Route} from 'react-router'
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //components
 
@@ -12,20 +15,28 @@ import { Bookmark } from './Frontend/Pages/Bookmark';
 import { Profile } from './Frontend/Pages/Profile';
 import { Login } from './Frontend/Pages/Login';
 import { Signup } from './Frontend/Pages/Signup';
-import { Test } from './Frontend/Pages/Test';
+
 import {RequiresAuth} from './Frontend/Utils/RequiresAuth'
-import { useEffect } from 'react';
+
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
+
 
 
 export default function App() {
   
 
+
   return (
    
     <div className="App">
-     
+     <ToastContainer
+        position="bottom-right"
+        autoClose="400"
+        closeOnClick="true"
+        draggable="true"
+        borderRadius="10px"
+      />
      
       <Routes>
 
@@ -41,7 +52,7 @@ export default function App() {
         </RequiresAuth>
         }/>
         <Route 
-          path='/profile'
+          path='/profile/:id'
 
           element={
             <RequiresAuth>

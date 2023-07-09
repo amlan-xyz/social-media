@@ -1,28 +1,41 @@
-import { useContext, useState } from "react";
+import { useContext,useState} from "react";
 import { AuthContext } from "../Context/AuthContext";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faEye,faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-svg-core/styles.css'
 
 export function Login(){
-	const {handleLogin,handleGuestLogin,setUserInput} =useContext(AuthContext);	
-	
+	const {handleLogin,handleGuestLogin,setUserInputLogin} =useContext(AuthContext);	
+	const [passwordType,setPasswordType]=useState("password")
 	return(
 		<div className="login">
 
-			<header>My Website</header>
+			<header>WeShare</header>
 
 			<form  onSubmit={handleLogin} >
 		
 				<label htmlFor="username" placeholder="username">Username</label>
-				<input type="text" onChange={(e)=>setUserInput(form=>({...form,username:e.target.value}))} id="username" required />
+				<input type="text" onChange={(e)=>setUserInputLogin(form=>({...form,username:e.target.value}))} id="username" required />
+				<div className="checkbox">
 				<label htmlFor="password">Password</label>
-				<input type="password" onChange={(e)=>setUserInput(form=>({...form,password:e.target.value}))} id="password" required />		
+				{
+						passwordType==='password'?<span onClick={()=>{
+							setPasswordType('text')
+						}}><FontAwesomeIcon className="post-icon" icon={faEye}/></span>:<span onClick={()=>{
+							setPasswordType('password')
+						}}><FontAwesomeIcon className="post-icon" icon={faEyeSlash}/></span>
+					}
+				</div>
+				<input type="password" onChange={(e)=>setUserInputLogin(form=>({...form,password:e.target.value}))} id="password" required />		
+				
 				<button type="submit">Login</button>
 				<div className="alternate-btn">
-					<a href="/signup">Signup <br /></a>
+					<a className="" onClick={handleGuestLogin} >Guest login</a>
+					<a href="/signup">Signup</a>
 				</div>
 			</form>
 
-			<button className="guest_login" onClick={handleGuestLogin} >Guest login</button>
+			
 		</div>
 
 	)

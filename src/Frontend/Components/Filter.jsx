@@ -6,12 +6,12 @@ import { PostContext } from '../Context/PostsContext';
 
 export function Filter(){
 
-	const {sortTrending,getUserData}=useContext(PostContext)
+	const {sortTrending,sortLatest}=useContext(PostContext)
 
 	return(
 		<div className="aside-filter">
 			<button onClick={sortTrending}>Trending</button>
-			<button onClick={getUserData}>Latest</button>
+			<button onClick={sortLatest}>Latest</button>
 		</div>	
 	)
 }

@@ -4,11 +4,14 @@ import {  faHomeUser,faMagnifyingGlass,faBookBookmark,faUser } from '@fortawesom
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { useContext } from "react";
 import { PostContext } from "../Context/PostsContext";
+import { AuthContext } from "../Context/AuthContext";
+import { ProfileContext } from "../..";
 
 
 export function Sidebar(){
-
+	const {user}=useContext(AuthContext)
 	const {setCreatePost}=useContext(PostContext)
+	const {getProfileData}=useContext(ProfileContext)
 	return (
 		<div className="sidebar">
 			<div className="sidebar-content">
@@ -17,18 +20,17 @@ export function Sidebar(){
 						<li key='home'><Link to='/'><FontAwesomeIcon className="sidebar-icon" icon={faHomeUser}/>Home</Link></li>
 						<li key='explore'><Link to='/explore'><FontAwesomeIcon icon={faMagnifyingGlass} className="sidebar-icon" /> Explore</Link></li>
 						<li key='bookmarks'><Link to='/bookmarks'><FontAwesomeIcon icon={faBookBookmark} className="sidebar-icon" /> Bookmark</Link></li>
-						<li key='profile'><Link to='/profile'><FontAwesomeIcon icon={faUser} className="sidebar-icon" />Profile</Link></li>
+						<li onClick={()=>{
+							getProfileData(user._id);
+						}} key='profile'><Link to={`/profile/${user._id}`}><FontAwesomeIcon icon={faUser} className="sidebar-icon" />Profile</Link></li>
 					</ul>
 
-					{/* <button className="sidebar-btn" onClick={()=>{
-						setCreatePost(true);
-					}}>Create new Post</button> */}
 				</div>
 				<div className="sidebar-profile">
 					<img src='/avatars/1.png' alt="profile" />
 					<p>
 						Amlan<br />
-						<span>@username</span>
+						<span>@{user.username}</span>
 					</p>
 				</div>
 			</div>

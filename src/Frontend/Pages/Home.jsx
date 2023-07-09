@@ -3,22 +3,26 @@ import {Aside} from '../Components/Aside'
 import { Navbar } from '../Components/Navbar';
 import { CreatePost } from '../Components/CreatePost';
 import {Post} from '../Components/Post'
-import { Link } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../Context/AuthContext';
-import axios from 'axios'
+import { useContext, useEffect, useState} from 'react';
+import Modal from 'react-modal';
+
+
 import { PostContext } from '../Context/PostsContext';
 
 import { EditPost } from '../Components/EditPost';
 import { Filter } from '../Components/Filter';
 
+
+
+
 export function Home(){
-	const {userPosts,getUserData,showEdit,showCreatePost,setCreatePost}=useContext(PostContext)
+	const {getHomePosts,homePosts,showEdit,showCreatePost,setCreatePost}=useContext(PostContext)
 
 	
+  
 	useEffect(()=>{
-		getUserData();
-	},[])
+		getHomePosts();
+	  },[])
 
 	return(
 	<div className='container'>
@@ -26,7 +30,8 @@ export function Home(){
 		<Navbar/>
 		<Sidebar/>
 		<main>
-		
+	  		
+			 
 			{
 				!showCreatePost && <button className="sidebar-btn" onClick={()=>{
 					setCreatePost(true);
@@ -37,22 +42,27 @@ export function Home(){
 				showCreatePost && <CreatePost/>
 			}
 			
+			
 			<div className="home_filters">
-			<header>Latest Posts</header>
-			<Filter/>
+				<header>Latest Posts</header>
+				<Filter/>
 			</div>
 
 			
 			{
-				userPosts.map(post=>(
-					<Post post={post}/>
+			    homePosts.length!==0?homePosts.map(post=>(
+					<Post key={post._id} post={post}/>
 					)	
-				)
+				):(
+					<p className='no_content'>No posts available</p>
+					)
 			}
 			{
 				showEdit && <EditPost />
 			}
+
 			
+	
 		</main>
 		
 		<Aside />

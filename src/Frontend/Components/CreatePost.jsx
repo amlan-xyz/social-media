@@ -7,7 +7,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 
 export function CreatePost(){
 
-	const {getUserData,setCreatePost,showCreatePost}=useContext(PostContext)
+	const {getUserData,setCreatePost,getHomePosts}=useContext(PostContext)
 	const [postText,setPostText]=useState('')
 	const createPost=async(e)=>{
 		e.preventDefault();
@@ -19,6 +19,7 @@ export function CreatePost(){
 			})
 			alert('post created');
 			getUserData();
+			getHomePosts();
 			e.target.text_area.value='';
 			setCreatePost(false)
 		}catch(err){
@@ -28,20 +29,23 @@ export function CreatePost(){
 
 	
 	return (
-		<form onSubmit={createPost} className="create-post">
-			<div className="close_btn">
-				<p>New Post</p>
-				<a  onClick={()=>setCreatePost(false)}><FontAwesomeIcon icon={faMultiply}  className="post-icon"/></a>
-			</div>
-			{/* <textarea onChange={(e)=>setPost(form=>({...form,content:e.target.value}))}   id="" cols="30" rows="8" placeholder="What's on your mind?"></textarea> */}
-			<textarea onChange={(e)=>{
-				setPostText({content:e.target.value}); 
-			}}   id="text_area" cols="30" rows="8" placeholder="What's on your mind?"></textarea>
-			<div>
-				{/* <input type="file" /> */}
+		<div className="modal">
+			<div className="modal_wrapper"></div>
+			<div className="modal_container">
+			<form onSubmit={createPost} className="create-post">
+				<div className="close_btn">
+					<p>New Post</p>
+					<a  onClick={()=>setCreatePost(false)}><FontAwesomeIcon icon={faMultiply}  className="post-icon"/></a>
+				</div>
+
+				<textarea onChange={(e)=>{
+					setPostText({content:e.target.value}); 
+					}}   id="text_area" cols="70" rows="3" placeholder="What's on your mind?"></textarea>
+				<div>
 				<button type="submit">Post</button>
-			</div>
-			
-		</form>	
+			</div>	
+			</form>	
+		</div>
+	  </div>
 	) 
 }

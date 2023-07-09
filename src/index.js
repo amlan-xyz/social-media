@@ -23,7 +23,6 @@ export {AuthContext,PostContext,ProfileContext,BookmarkContext,FollowerContext};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <Router>
       <AuthContextProvider>
         <PostContextProvider>
@@ -36,9 +35,7 @@ root.render(
           </ProfileContextProvider>
         </PostContextProvider>
       </AuthContextProvider>
-      
     </Router>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

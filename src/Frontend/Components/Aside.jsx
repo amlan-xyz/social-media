@@ -13,7 +13,7 @@ export function Aside(){
 				<header>Who to follow?</header>
 				{
 					allSuggestions.map(item=>(
-						<Suggestions user={item}/>
+						<Suggestions key={item._id} suggested_user={item}/>
 					))
 				}
 				

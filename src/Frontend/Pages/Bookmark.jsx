@@ -24,10 +24,11 @@ export function Bookmark(){
 			<header>Your Bookmarks</header>
 			{/* <Post/> */}
 				{
-					bookMarks.map(bookmark=>(
+					bookMarks.length!==0?	bookMarks.map(bookmark=>(
 						<BookmarkPost post={bookmark} />	
 						)
-					)
+					):
+					<p className='no_content'>No posts bookmarked</p>
 				}
 		</main>
 		<Aside />

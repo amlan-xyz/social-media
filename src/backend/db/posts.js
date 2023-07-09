@@ -17,7 +17,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "adarshbalika",
-    createdAt: formatDate(),
+    createdAt: '2023-07-08T12:05:05+05:30',
     updatedAt: formatDate(),
   },
   {
@@ -46,4 +46,32 @@ export const posts = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    content:
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non .",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "weird",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+
+  {
+    _id: uuid(),
+    content:
+      "this is a new post.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "weird",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
 ];
+
