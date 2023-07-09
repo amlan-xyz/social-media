@@ -4,6 +4,7 @@ import { PostContext } from "../Context/PostsContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faMultiply} from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import { toast } from "react-toastify";
 
 export function CreatePost(){
 
@@ -19,6 +20,7 @@ export function CreatePost(){
 			getUserData();
 			getHomePosts();
 			e.target.text_area.value='';
+			toast.success("Post Created")
 			setCreatePost(false)
 		}catch(err){
 			console.log(err);

@@ -34,7 +34,7 @@ export function Post({post}){
 				<header>
 					{username}
 					{"  "},{"  "} 
-					{createdAt.slice(0,10)}
+					{createdAt}
 				</header>
 				</div>
 				

@@ -35,7 +35,9 @@ export function Profile(){
 		<main>
 			{/* <User/> */}
 			<div className="user">
-			<img src={avatar} alt="profile" />
+			{
+					user.username===profileData.username && avatar ?<img src={avatar} alt="profile" />:<img src="/avatars/3.png" alt="profile" />
+			}
 			
 			<h3>{profileData.firstName + ' ' + profileData.lastName}</h3>
 			<small>@{profileData.username}</small>
