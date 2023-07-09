@@ -10,8 +10,7 @@ import { ProfileContext } from "../..";
 
 export function Sidebar(){
 	const {user}=useContext(AuthContext)
-	const {setCreatePost}=useContext(PostContext)
-	const {getProfileData}=useContext(ProfileContext)
+	const {getProfileData,avatar}=useContext(ProfileContext)
 	return (
 		<div className="sidebar">
 			<div className="sidebar-content">
@@ -27,7 +26,7 @@ export function Sidebar(){
 
 				</div>
 				<div className="sidebar-profile">
-					<img src='/avatars/1.png' alt="profile" />
+					<img src={avatar} alt="profile" />
 					<p>
 						Amlan<br />
 						<span>@{user.username}</span>

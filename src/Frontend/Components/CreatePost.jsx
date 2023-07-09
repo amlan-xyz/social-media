@@ -13,11 +13,9 @@ export function CreatePost(){
 		e.preventDefault();
 		try{
 			const encodedToken=localStorage.getItem('encodedToken');
-			// console.log(data)
 			const response=await axios.post('/api/posts',	{postData:postText},{
 				headers:{authorization:encodedToken}
 			})
-			alert('post created');
 			getUserData();
 			getHomePosts();
 			e.target.text_area.value='';
