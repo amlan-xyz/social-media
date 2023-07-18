@@ -12,7 +12,10 @@ export function Post({post}){
 	const {_id,content,likes:{likeCount,likedBy},username,createdAt}=post;
 	const {avatar}=useContext(ProfileContext)
 
+	const timeStamp = new Date(createdAt);
+	const newTime = timeStamp.toDateString();
 	// bookmarks context
+
 
 	const {getBookmarks,addToBookmarks,removeFromBookmarks,bookMarks}=useContext(BookmarkContext);
 	
@@ -34,7 +37,7 @@ export function Post({post}){
 				<header>
 					{username}
 					{"  "},{"  "} 
-					{createdAt}
+					{newTime}
 				</header>
 				</div>
 				

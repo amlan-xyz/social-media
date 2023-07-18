@@ -19,4 +19,4 @@ export const requiresAuth = function (request) {
   );
 };
 
-export const formatDate = () => dayjs().format('DD/MM/YYYY');
+export const formatDate = () => dayjs();

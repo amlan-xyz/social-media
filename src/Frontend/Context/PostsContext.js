@@ -98,7 +98,10 @@ export function PostContextProvider({children}){
 	}
 
 	const sortLatest=()=>{
-		setUserPosts(homePosts.sort((a,b)=>new Date(b.createdAt)- new Date(a.createdAt)));
+		const newPosts=homePosts.sort((a,b)=>Date.parse(b.createdAt)-  Date.parse(a.createdAt));
+		setUserPosts(newPosts)
+		console.log(newPosts)
+		console.log(homePosts);
 	}
 
 
