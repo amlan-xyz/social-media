@@ -28,7 +28,7 @@ export function EditPost(){
 			<textarea value={editInput} onChange={(e)=>setEditInput(e.target.value)} id="" cols="70" rows="10" placeholder="Edit post"></textarea>
 			<div>
 				{/* <input type="file" /> */}
-				<button type="submit">Post</button>
+				<button type="submit">Update</button>
 			</div>
 			
 		</form>	
@@ -37,4 +37,3 @@ export function EditPost(){
 	) 
 }
 
-// onChange={(e)=>setPost(form=>({...form,content:e.target.value}))} 

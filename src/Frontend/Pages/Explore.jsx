@@ -5,10 +5,11 @@ import {Post} from '../Components/Post'
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { PostContext } from '../Context/PostsContext';
+import { EditPost } from '../Components/EditPost';
 
 export function Explore(){
 
-	const {posts,getPosts} =useContext(PostContext)
+	const {posts,getPosts,showEdit} =useContext(PostContext)
 
 	useEffect(()=>{
 		getPosts();
@@ -28,6 +29,10 @@ export function Explore(){
 					<Post post={post}/>
 					)	
 				)
+			}
+
+			{
+				showEdit && <EditPost />
 			}
 		</main>
 		<Aside />
